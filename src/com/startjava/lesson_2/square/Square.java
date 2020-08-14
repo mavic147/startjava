@@ -1,4 +1,4 @@
-package com.startjava.lesson2.square;
+package com.startjava.lesson_2.square;
 
 public class Square {
     private int side;

@@ -1,4 +1,4 @@
-package com.startjava.lesson2.guessnumber;
+package com.startjava.lesson_2.guessnumber;
 import java.util.Scanner;
 
 public class Player {

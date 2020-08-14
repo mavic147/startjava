@@ -1,4 +1,4 @@
-package com.startjava.lesson1.guessgame;
+package com.startjava.lesson_1.guessgame;
 import java.util.Scanner;
 import java.lang.Math;
 
