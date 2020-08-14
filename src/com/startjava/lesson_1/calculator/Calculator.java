@@ -2,7 +2,6 @@ package com.startjava.lesson_1.calculator;
 
 import java.util.Scanner;
 
-
 public class Calculator {
     private int var1;
     private int var2;
