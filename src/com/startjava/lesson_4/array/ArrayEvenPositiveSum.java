@@ -1,3 +1,4 @@
+//Найти сумму всех четных положительных чисел
 package com.startjava.lesson_4.array;
 
 public class ArrayEvenPositiveSum {

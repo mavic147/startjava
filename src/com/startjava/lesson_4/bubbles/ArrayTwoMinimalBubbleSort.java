@@ -1,3 +1,4 @@
+//Найти в массиве два минимальных элемента (сортировка пузырьком)
 package com.startjava.lesson_4.bubbles;
 
 import com.startjava.lesson_4.array.UserArray;

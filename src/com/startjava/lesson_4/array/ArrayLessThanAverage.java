@@ -1,3 +1,4 @@
+//Вывести все элементы массива, которые меньше среднего арифметического
 package com.startjava.lesson_4.array;
 
 public class ArrayLessThanAverage {
