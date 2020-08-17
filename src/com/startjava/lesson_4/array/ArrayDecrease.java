@@ -1,4 +1,4 @@
-//Сжать массив, удалив из него все элементы из указанного интервала
+//Сжать массив, удалив из него все элементы из указанного интервала, пустые места справа заполнить нулями
 package com.startjava.lesson_4.array;
 
 import java.util.Scanner;
@@ -16,14 +16,25 @@ public class ArrayDecrease {
         int end = scanner.nextInt();
         int count = 0;
 
-        for (int i = 0; i < begin; i++) {
-            arr2[i] = arr[i];
-            count++;
-        }
+//        for (int i = 0; i < begin; i++) {
+//            arr2[i] = arr[i];
+//            count++;
+//        }
+//
+//        for (int i = end + 1; i < input.getLength(); i++) {
+//            arr2[count] = arr[i];
+//            count++;
+//        }
 
-        for (int i = end + 1; i < input.getLength(); i++) {
-            arr2[count] = arr[i];
-            count++;
+        for (int i =0; i < input.getLength(); i++) {
+            if (i < begin) {
+                arr2[i] = arr[i];
+            }
+            else if (i > end) {
+                arr2[begin] = arr[end + 1];
+                end++;
+                begin++;
+            }
         }
 
         System.out.print("New array is: ");
