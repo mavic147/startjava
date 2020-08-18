@@ -1,13 +1,12 @@
-//Найти в массиве число, которое встречается чаще всего
+//вывести на экран уникальные элементы массива
 package com.startjava.lesson_4.array;
 
-public class ArrayMostCommonNumber {
+public class ArrayUniqueObjects {
     public static void main(String[] args) {
         UserArray input = new UserArray();
         int[] arr = input.getNums();
-
-
         int[] buff = new int[input.getLength()];
+
         for (int i = 0; i < input.getLength(); i++) {
             int count = 0;
             for (int j = 0; j < input.getLength(); j++) {
@@ -18,15 +17,10 @@ public class ArrayMostCommonNumber {
             }
         }
 
-        int max = buff[0];
-        int maxIndex = 0;
-        for (int i = 1; i < input.getLength(); i++) {
-            if (buff[i] > max) {
-                max = buff[i];
-                maxIndex = i;
-            }
+        System.out.print("Unique elements are: ");
+        for (int i = 0; i < input.getLength(); i++) {
+            if (buff[i] == 1)
+                System.out.print(arr[i] + " ");
         }
-
-        System.out.println("The most common number of the array is: " + arr[maxIndex]);
     }
 }
