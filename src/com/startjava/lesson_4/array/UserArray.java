@@ -1,3 +1,4 @@
+//класс для создания и инициализации массива
 package com.startjava.lesson_4.array;
 
 import java.util.Scanner;
