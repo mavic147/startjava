@@ -5,10 +5,8 @@ import java.lang.Math;
 import java.util.Scanner;
 
 public class ArrayRandomFill {
-    private int length;
-    private int[] randomNumbers;
-    private int begin;
-    private int end;
+    private final int length;
+    private final int[] randomNumbers;
 
     public int getLength() {
         return length;
@@ -24,9 +22,9 @@ public class ArrayRandomFill {
         length = scan.nextInt();
         randomNumbers = new int[length];
         System.out.print("Print the beginning of a range, in which the numbers will be generated: ");
-        begin = scan.nextInt();
+        int begin = scan.nextInt();
         System.out.print("Print the end of the range: ");
-        end = scan.nextInt();
+        int end = scan.nextInt();
 
         for (int i = 0; i < length; i++) {
             randomNumbers[i] = (int) (Math.random() * ((end + 1) - begin) + begin);
