@@ -1,3 +1,4 @@
+//Вставка элемента в произвольное место массива
 package com.startjava.lesson_4.array;
 
 import java.util.Arrays;
