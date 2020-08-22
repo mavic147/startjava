@@ -1,11 +1,14 @@
 package com.startjava.lesson_1.calculator;
 
 import java.util.Scanner;
+import java.util.Arrays;
+import static java.lang.Math.*;
 
 public class Calculator {
     private int var1;
     private int var2;
     private char operation;
+    private String[] forExpressions = new String[3];
     Scanner scan = new Scanner(System.in);
 
         // public int getVar1() {
@@ -35,7 +38,7 @@ public class Calculator {
         public boolean finishCount() {
             System.out.println("Would you like to continue?");
             String userRespond;
-            userRespond = scan.next();
+            userRespond = scan.nextLine();
             while (true) {
                 if (userRespond.toLowerCase().equals("no")) {
                     return true;
@@ -50,13 +53,17 @@ public class Calculator {
             }
         }
 
+        public void conversion() {
+            var1 = Integer.parseInt(forExpressions[0]);
+            var2 = Integer.parseInt(forExpressions[2]);
+            operation = forExpressions[1].charAt(0);
+        }
+
         public void init() {
-            System.out.println("Print the 1st number: ");
-            var1 = scan.nextInt();
-            System.out.println("Print the operator: ");
-            operation = scan.next().charAt(0);
-            System.out.println("Print the 2nd number: ");
-            var2 = scan.nextInt();
+            Arrays.fill(forExpressions, "");
+            System.out.println("Print the 1st number, the operator and the 2nd number, for example [2 * 10]: ");
+            forExpressions = scan.nextLine().split(" ");
+            conversion();
         }
 
         public void start() {
@@ -73,33 +80,37 @@ public class Calculator {
             init();
             switch (operation) {
             case '+':
-                System.out.println(var1 + var2);
+                System.out.println(addExact(var1, var2));
                 break;
 
             case '-':
-                System.out.println(var1 - var2);
+                System.out.println(subtractExact(var1,var2));
                 break;
 
             case '*':
-                System.out.println(var1*var2);
+                System.out.println(multiplyExact(var1,var2));
                 break;
 
             case '/':
-                System.out.println((double)var1/var2);
+                System.out.println((double)floorDiv(var1,var2));
                 break;
 
             case '%':
-                System.out.println(var1%var2);
+                if (var1 < 0)
+                    System.out.println(floorMod(var1,var2));
+                else
+                    System.out.println(var1 % var2);
                 break;
 
             case '^':
-                double result = 1;
-                boolean isNegative = var2 < 0;
-                for (int i = 0; i < Math.abs(var2); i++)
-                    result *= var1;
-                if (isNegative)
-                    result = 1 / result;
-                System.out.println(result);
+                System.out.println(pow(var1, var2));
+//                double result = 1;
+//                boolean isNegative = var2 < 0;
+//                for (int i = 0; i < Math.abs(var2); i++)
+//                    result *= var1;
+//                if (isNegative)
+//                    result = 1 / result;
+//                System.out.println(result);
                 break;
 
             default:

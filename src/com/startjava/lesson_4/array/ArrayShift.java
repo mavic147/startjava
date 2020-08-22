@@ -5,66 +5,70 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class ArrayShift {
-    ArrayRandomFill rand = new ArrayRandomFill();
     Scanner scan = new Scanner(System.in);
-    private int shift;
-    private String response;
-    private final int[] arr = rand.getRandomNumbers();
-    private final int[] buff = new int[rand.getLength()];
+    private int steps;
+    private String shiftSide;
+    private final int[] arr;
 
-    public int getShift() {
-        return shift;
+    public ArrayShift() {
+        ArrayRandomFill rand = new ArrayRandomFill();
+        arr = rand.getRandomNumbers();
+        printArr();
     }
 
-    public String getResponse() {
-        return response;
+    public void printArr() {
+        System.out.println(Arrays.toString(arr));
     }
 
-    public void shiftLogic() {
-        int index = 0;
+    private void initParams() {
+        System.out.print("How many steps should be taken? Print the amount: ");
+        steps = scan.nextInt();
+
+        System.out.print("Where to move? Print [left/right]: ");
         while (true) {
-            System.out.print("Where to move? Print [left/right]: " );
-            response = scan.next();
-            if (response.toLowerCase().equals("left")) {
-                index = shift;
-                for (int i = 0; i <= shift; i++) {
-                    buff[i] = arr[index];
-                    if (index == rand.getLength() - 1)
-                        break;
-                    index++;
-                }
+            shiftSide = scan.next().toLowerCase();
+            if (shiftSide.equals("left") || shiftSide.equals("right"))
                 break;
-            }
-            else if (response.toLowerCase().equals("right")) {
-                for (int i = shift; i < rand.getLength(); i++) {
-                    buff[i] = arr[index];
-                    index++;
-                }
-                break;
-            }
             else
                 System.out.println("Wrong answer, type again:");
         }
-
-        System.out.println("The initial array is: " + Arrays.toString(arr));
-        System.out.println("The final array is: " + Arrays.toString(buff));
     }
 
-    public void performShift() {
-        while (true) {
-            System.out.print("How many steps should be taken? Print the amount: ");
-            shift = scan.nextInt();
-            if (shift == rand.getLength()) {
-                System.out.println("The initial array is: " + Arrays.toString(arr));
-                System.out.println("The final array is: " + Arrays.toString(buff));
-                break;
-            }
-            else if (shift > rand.getLength()) {
-                System.out.println("Error: step value is bigger than the array! Try again.");
-            }
+    private void shiftRight() {
+        int index = arr.length - 1 - steps;
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (index < 0)
+                arr[i] = 0;
             else
-                break;
+                arr[i] = arr[index];
+            index--;
         }
-        shiftLogic();
+    }
+
+    private void shiftLeft() {
+        int index = steps;
+        for (int i = 0; i < arr.length; i++) {
+            if (index >= arr.length)
+                arr[i] = 0;
+            else
+                arr[i] = arr[index];
+            index++;
+        }
+    }
+
+    private void shiftLogic() {
+        initParams();
+        if (shiftSide.equals("left"))
+            shiftLeft();
+        else
+            shiftRight();
+        printArr();
+    }
+
+    public void startMove() {
+        do {
+            shiftLogic();
+            System.out.print("To continue print yes: ");
+        } while (scan.next().equals("yes"));
     }
 }
