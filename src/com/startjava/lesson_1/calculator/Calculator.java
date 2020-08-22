@@ -61,7 +61,7 @@ public class Calculator {
 
         public void init() {
             Arrays.fill(forExpressions, "");
-            System.out.println("Print the 1st number, the operator and the 2nd number, for example [2 * 10]: ");
+            System.out.print("Print the 1st number, the operator and the 2nd number, for example [2 * 10]: ");
             forExpressions = scan.nextLine().split(" ");
             conversion();
         }
