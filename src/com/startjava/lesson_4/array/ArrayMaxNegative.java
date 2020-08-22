@@ -6,21 +6,21 @@ public class ArrayMaxNegative {
         UserArray input = new UserArray();
         int[] arr = input.getNums();
 
-        int maxNegative = arr[0];
-        if (arr[0] > 0) {
-            maxNegative *= -1;
-        }
+        double maxNegative = Double.NEGATIVE_INFINITY;
 
         int maxNegativeIndex = 0;
         for (int i = 1; i < input.getLength(); i++) {
-            if (arr[i] < 0) {
-                if (arr[i] > maxNegative) {
-                    maxNegative = arr[i];
-                    maxNegativeIndex = i;
-                }
+            if (arr[i] < 0 & arr[i] > maxNegative) {
+                maxNegative = arr[i];
+                maxNegativeIndex = i;
             }
         }
-        System.out.println("Maximum negative element in the array: " + maxNegative);
-        System.out.println("Its index is: " + maxNegativeIndex);
+
+        if (maxNegative == Double.NEGATIVE_INFINITY)
+            System.out.println("No negative numbers were added to the array.");
+        else {
+            System.out.println("Maximum negative element in the array: " + (int) maxNegative);
+            System.out.println("Its index is: " + maxNegativeIndex);
+        }
     }
 }
