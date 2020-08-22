@@ -5,24 +5,23 @@ public class ArrayMostCommonNumber {
     public static void main(String[] args) {
         UserArray input = new UserArray();
         int[] arr = input.getNums();
-
-
-        int[] buff = new int[input.getLength()];
+        
+        int[] countAppearance = new int[input.getLength()];
         for (int i = 0; i < input.getLength(); i++) {
             int count = 0;
             for (int j = 0; j < input.getLength(); j++) {
                 if (arr[i] == arr[j]) {
                     count++;
-                    buff[i] = count;
+                    countAppearance[i] = count;
                 }
             }
         }
 
-        int max = buff[0];
+        int max = countAppearance[0];
         int maxIndex = 0;
         for (int i = 1; i < input.getLength(); i++) {
-            if (buff[i] > max) {
-                max = buff[i];
+            if (countAppearance[i] > max) {
+                max = countAppearance[i];
                 maxIndex = i;
             }
         }
