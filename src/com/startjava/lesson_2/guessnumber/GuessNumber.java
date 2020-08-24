@@ -4,13 +4,22 @@ import java.util.Scanner;
 import java.lang.Math;
 
 public class GuessNumber {
-
+    private int player1Attempt = 0;
+    private int player2Attempt = 0;
     private final Scanner scan = new Scanner(System.in);
     Player player1 = new Player();
     Player player2 = new Player();
 
+    public int getPlayer1Attempt() {
+        return player1Attempt;
+    }
+
+    public int getPlayer2Attempt() {
+        return player2Attempt;
+    }
+
     private int getCompNumber() {
-        System.out.println("The computer picked a number in range from 0 to 100. Guess the number, printing it: ");
+        System.out.print("The computer picked a number in range from 0 to 100. You have 10 attempts to guess the number.");
         return (int)(Math.random()*101);
     }
 
@@ -34,9 +43,15 @@ public class GuessNumber {
     }
 
     public boolean playerTry(Player player, int compNum) {
+        System.out.println(player.getName() + ", print the number: ");
         player.setPlayerNum();
         while (true) {
             if (player.getPlayerNum() == compNum) {
+                if (player == player1) {
+
+                }
+                else
+
                 System.out.println(player.getName() + ", you guessed it right, congrats!");
                 return true;
             }
