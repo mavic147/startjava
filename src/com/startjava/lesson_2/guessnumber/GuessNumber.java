@@ -5,10 +5,6 @@ import java.lang.Math;
 import java.util.Arrays;
 
 public class GuessNumber {
-    private int player1Attempt = 0;
-    private int player2Attempt = 0;
-    private String player1Result = "defeat";
-    private String player2Result = "defeat";
     private final Scanner scan = new Scanner(System.in);
     Player player1 = new Player();
     Player player2 = new Player();
@@ -18,9 +14,20 @@ public class GuessNumber {
         return (int)(Math.random()*101);
     }
 
+    public void prepareForNewGame() {
+        player1.setPlayerAnswers();
+        player2.setPlayerAnswers();
+        player1.updatePlayerResult();
+        player2.updatePlayerResult();
+        player1.updatePlayerAttempt();
+        player2.updatePlayerAttempt();
+        player1.updateNextAnswer();
+        player2.updateNextAnswer();
+    }
+
     public boolean endGame() {
         String response;
-        System.out.println("Would you like to continue? [Yes/No]");
+        System.out.print("Would you like to continue? [Yes/No]");
         response = scan.next();
         while (true) {
             if (response.toLowerCase().equals("no")) {
@@ -28,6 +35,7 @@ public class GuessNumber {
                 return true;
             }
             else if (response.toLowerCase().equals("yes")) {
+                prepareForNewGame();
                 return false;
             }
             else {
@@ -38,24 +46,13 @@ public class GuessNumber {
     }
 
     public void attemptCount(Player player) {
-        if (player == player1 & player1Attempt <=10)
-            player1Attempt++;
-        else if (player == player2 & player2Attempt <=10)
-            player2Attempt++;
+        player.setPlayerAttempt();
     }
 
-    public void whoWins(Player player) { // DRY. оптимизировать так, чтобы вывод был один общий.
-        if (player == player1) {
-            player1Result = "win";
-            System.out.println(player.getName() + ", you've won the game from " + player1Attempt + " attempts." +
-                    " All the numbers that you put: " + Arrays.toString(player.getPlayerAnswers()));
-        }
-        else  {
-            player2Result = "win";
-            System.out.println(player.getName() + ", you've won the game from " + player2Attempt + " attempts." +
-                    " All the numbers that you put: " + Arrays.toString(player.getPlayerAnswers()));
-        }
-
+    public void whoWins(Player player) {
+        player.setPlayerResult("win");
+        System.out.println(player.getName() + ", you've won the game from " + player.getPlayerAttempt() + " attempts." +
+                " All the numbers that you've chosen: " + Arrays.toString(player.getPlayerAnswers()));
     }
 
     public boolean playerTry(Player player, int compNum) {
@@ -87,8 +84,8 @@ public class GuessNumber {
         while (true) {
             if (playerTry(player1, compNumber) || playerTry(player2, compNumber)) {
                 if (endGame()) {
-                    System.out.println(player1.getName() + " " + player1Result);
-                    System.out.println(player2.getName() + " " + player2Result);
+                    System.out.println(player1.getName() + " " + player1.getPlayerResult());
+                    System.out.println(player2.getName() + " " + player2.getPlayerResult());
                     break;
                 }
                 else
